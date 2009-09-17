@@ -28,7 +28,7 @@ def friends_graph(request, username, template_name='friends_graph/friends_graph.
     
     # Save all the letters of the alphabet to a dict as formal thejit notes
     letters = {}
-    for letter in string.ascii_lowercase:
+    for letter in string.ascii_uppercase:
         letters[letter] = format_letter_node(letter)
     
     # loop through all the friends of the user
@@ -37,7 +37,7 @@ def friends_graph(request, username, template_name='friends_graph/friends_graph.
 
         # Save the friend to the associated letter in the letters dictionary
         # TODO make this not an ugly long string
-        letters[friend.username[0].lower()]['children'].append(format_user_node(friend))
+        letters[friend.username[0].upper()]['children'].append(format_user_node(friend))
 
     # loop through the letters.
     # only add those letters with nodes as children so we don't pollute the screen.

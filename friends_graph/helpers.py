@@ -9,13 +9,13 @@ def format_letter_node(letter):
     """ I take a single character and format it in thejit node style """
     u = {}
     u['id'] = "node_l_%s" % letter
-    u['name'] = letter.lower()
+    u['name'] = letter.upper()
     u['data'] = {}
     u['children'] = []
     return u    
 
 def format_user_node(user):
-    """ I take a Django user name and format it in thejit node style """    
+    """ I take a Django user and format it in thejit node style """    
     
     name = user.get_full_name().strip()
     if not name:

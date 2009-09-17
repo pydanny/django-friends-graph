@@ -16,7 +16,6 @@ function init() {
     interpolation: 'linear',
     //parent-children distance
     levelDistance: 100,
-    
     //Add a controller to make the tree move on click.
      onCreateLabel: function(domElement, node) {  
        domElement.innerHTML = node.name;  
