@@ -1,13 +1,22 @@
 import string
 
+
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.template import Context, RequestContext
+from django.template.loader import get_template
 from django.utils import simplejson
 
 from friends.models import Friendship
 
-from friends_graph.helpers import get_js
+from friends_graph.helpers import format_letter_node, format_user_node
+
+def get_js(json, template_name='friends_graph/friends_graph.js'):
+    """ Render the in page javascript """
+    
+    template = get_template(template_name)
+    c = Context({'json': json})
+    return template.render(c)
 
 def friends_graph(request, username, template_name='friends_graph/friends_graph.html'):
     """ Render a thejit rgraph based on the user's friends  """
@@ -41,13 +50,12 @@ def friends_graph(request, username, template_name='friends_graph/friends_graph.
     # jsonify the data
     data = simplejson.dumps(data)
         
-    # stick it into our hardcoded JS
-    # TODO make the JS just plain better. 
-    data = get_js(data)
+    # stick it into our custom written JS templates
+    friends_graph_js = get_js(data)
     
     return render_to_response(template_name, {
         "base_user": user,
-        "data":data
+        "friends_graph_js":friends_graph_js
     }, context_instance=RequestContext(request))    
     
     
