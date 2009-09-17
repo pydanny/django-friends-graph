@@ -1,0 +1,47 @@
+{% extends "friends_graph/base.html" %}
+
+{% load i18n %}
+
+
+{% block head_title %}Friends of {{ base_user.get_full_name }}{% endblock %}
+
+{% block body_tag %}onload="init();"{% endblock %}
+
+{% block body %}
+
+<style>
+#infovis {  
+     width:900px;  
+     height:500px;  
+     background-color: black;  
+ }  
+ /* style for node labels */  
+ .node {  
+     color: white;  
+     background-color:transparent;  
+     cursor:pointer;  
+     font-weight:bold;  
+     opacity:0.9;  
+     /* border:1px solid red;  */
+ }  
+   
+ .node:hover {  
+     cursor:pointer;  
+     color: 222;  
+     background-color:white;  
+     font-weight:bold;  
+     opacity:1;  
+ }     
+    </style>
+
+
+	<script type="text/javascript">
+	    {{ data|safe }}
+	</script>
+
+    <h2>Friends of {{ base_user.get_full_name }}</h2>
+
+    <div id="infovis"></div> 
+
+{% endblock %}
+
