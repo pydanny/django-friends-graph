@@ -14,6 +14,56 @@ Dependencies
 
  * django-friends_
  
+Installation
+============
+
+Pinax Install
+~~~~~~~~~~~~~
+
+No pypi package yet but nevertheless getting django-friends-graph up and running inside of your Pinax environment should be pretty straightforward::
+
+    pip install -e git://github.com/pydanny/django-friends-graph.git#egg=django-friends-graph
+
+Then add it to your installed applications in settings.py::
+
+    INSTALLED_APPS = (
+        ...
+        'friends_graph',
+    )
+    
+Go add a new route for the urls::
+
+
+    urlpatterns = patterns('',
+        ...
+        (r'^graph/', include('friends_graph.urls')),
+    )
+    
+You should be able to go to /graph/<my-user-name> and see yourself and all your friends.
+
+Django Installation
+~~~~~~~~~~~~~~~~~~~
+
+Not quite as easy as the Pinax installation but it shouldn't be too hard. Until a formal Pypi release is created, you will need to make sure you've installed the git-scm_ distributed version control system (DVCS) before proceeding. Then you just do the same as Pinax be able to use this package::
+
+    pip install -e git://github.com/pydanny/django-friends-graph.git#egg=django-friends-graph
+
+Then add it to your installed applications in settings.py::
+
+    INSTALLED_APPS = (
+        ...
+        'friends_graph',
+    )
+    
+Go add a new route for the urls::
+
+    urlpatterns = patterns('',
+        ...
+        (r'^graph/', include('friends_graph.urls')),
+    )
+    
+You should be able to go to /graph/<my-user-name> and see yourself and all your friends.
+ 
 TODO
 ====
 
@@ -24,3 +74,4 @@ TODO
 .. _thejit: http://thejit.org/
 .. _django-friends: http://github.com/jtauber/django-friends
 .. _Pinax: http://pinaxproject.com
+.. _git-scm: http://www.git-scm.org/
