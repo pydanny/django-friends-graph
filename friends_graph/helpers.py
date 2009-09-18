@@ -21,6 +21,8 @@ def format_user_node(user):
     if not name:
         name = user.username
     
+    name = '<a href="/profiles/%s">%s</a>' % (user.username, name)
+    
     u = {}
     u['id'] = "node_%s" % user.username
     u['name'] = name
