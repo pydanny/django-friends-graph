@@ -61,7 +61,9 @@ Go add a new route for the urls::
         ...
         (r'^graph/', include('friends_graph.urls')),
     )
-    
+
+You'll need to move the django-friends-graph media files into wherever you store media in your project.    
+
 You should be able to go to /graph/<my-user-name> and see yourself and all your friends.
  
 TODO
