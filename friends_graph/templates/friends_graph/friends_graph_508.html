@@ -1,0 +1,17 @@
+{% extends "friends_graph/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Friends of {{ base_user.get_full_name }}{% endblock %}
+
+{% block body %}
+
+    <h2>Friends of {{ base_user.get_full_name }}</h2>
+
+    <div id="infovis">
+        {{ friends_graph_data }}
+        
+    </div> 
+
+{% endblock %}
+

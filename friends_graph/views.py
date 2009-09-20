@@ -11,17 +11,7 @@ from friends.models import Friendship
 
 from friends_graph.helpers import format_letter_node, format_user_node
 
-def get_js(json, template_name='friends_graph/friends_graph.js'):
-    """ Render the in page javascript """
-    
-    template = get_template(template_name)
-    c = Context({'json': json})
-    return template.render(c)
-
-def friends_graph(request, username, template_name='friends_graph/friends_graph.html'):
-    """ Render a thejit rgraph based on the user's friends  """
-    
-    user = get_object_or_404(User, username=username)    
+def make_graph(user):
         
     # Format the core user node
     data = format_user_node(user)
@@ -47,6 +37,22 @@ def friends_graph(request, username, template_name='friends_graph/friends_graph.
         
         data['children'].append(ldata)
         
+    return data
+
+def get_js(json, template_name='friends_graph/friends_graph.js'):
+    """ Render the in page javascript """
+    
+    template = get_template(template_name)
+    c = Context({'json': json})
+    return template.render(c)
+
+def friends_graph(request, username, template_name='friends_graph/friends_graph.html'):
+    """ Render a thejit rgraph based on the user's friends  """
+    
+    user = get_object_or_404(User, username=username)    
+    
+    data = make_graph(user)
+        
     # jsonify the data
     data = simplejson.dumps(data)
         
@@ -58,4 +64,15 @@ def friends_graph(request, username, template_name='friends_graph/friends_graph.
         "friends_graph_js":friends_graph_js
     }, context_instance=RequestContext(request))    
     
+    
+def friends_graph_508(request, username, template_name='friends_graph/friends_graph_508.html'):
+    
+    user = get_object_or_404(User, username=username)    
+    
+    data = make_graph(user)    
+    
+    return render_to_response(template_name, {
+        "base_user": user,
+        "friends_graph_data": data
+    }, context_instance=RequestContext(request))    
     
