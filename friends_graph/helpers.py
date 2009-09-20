@@ -25,6 +25,7 @@ def format_user_node(user):
     
     u = {}
     u['id'] = "node_%s" % user.username
+    u['username'] = user.username
     u['name'] = name
     u['data'] = {}
     u['children'] = []

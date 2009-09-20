@@ -1,17 +1,27 @@
 {% extends "friends_graph/base.html" %}
 
 {% load i18n %}
+{% load avatar_tags %}
 
 {% block head_title %}Friends of {{ base_user.get_full_name }}{% endblock %}
 
 {% block body %}
 
     <h2>Friends of {{ base_user.get_full_name }}</h2>
-
+    
     <div id="infovis">
-        {{ friends_graph_data }}
-        
+        <ul>
+            {% for letter in friends_graph_data.children %}
+                <li>{{ letter.name }}
+                    <ul>
+                      {% for child in letter.children %}
+                        <li>{{ child.name|safe }}</li>
+                      {% endfor %}
+                    </ul>    
+                </li>
+            {% endfor %}
+        </ul>
     </div> 
-
+    
 {% endblock %}
 

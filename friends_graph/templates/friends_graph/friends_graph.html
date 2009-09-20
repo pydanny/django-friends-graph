@@ -37,11 +37,16 @@
 
 	<script type="text/javascript">
 	    {{ friends_graph_js|safe }}
-	</script>
+	</script>	
 
     <h2>Friends of {{ base_user.get_full_name }}</h2>
 
     <div id="infovis"></div> 
+    
+    <p>
+        <a href="{% url friends_graph_508 base_user %}">Can't see the graph?</a>        
+    </p>
+    
 
 {% endblock %}
 
