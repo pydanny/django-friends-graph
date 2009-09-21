@@ -1,7 +1,7 @@
 import string
 
-
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, RequestContext
 from django.template.loader import get_template
@@ -38,6 +38,20 @@ def make_graph(user):
         data['children'].append(ldata)
         
     return data
+    
+def friends_graph_json(request, username):
+    
+    # fetch the user
+    user = get_object_or_404(User, username=username)    
+    
+    # make the data
+    data = make_graph(user)
+        
+    # jsonify the data
+    data = simplejson.dumps(data)
+
+    return HttpResponse(data)
+
 
 def get_js(json, template_name='friends_graph/friends_graph.js'):
     """ Render the in page javascript """
