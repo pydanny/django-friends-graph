@@ -39,6 +39,10 @@ Go add a new route for the urls::
         (r'^graph/', include('friends_graph.urls')),
     )
     
+Add the following to your template's body tag::
+
+     <body onload="init();">
+    
 You should be able to go to /graph/<my-user-name> and see yourself and all your friends.
 
 Django Installation
@@ -61,6 +65,10 @@ Go add a new route for the urls::
         ...
         (r'^graph/', include('friends_graph.urls')),
     )
+    
+Add the following to your template's body tag::
+
+     <body onload="init();">    
 
 You'll need to move the django-friends-graph media files into wherever you store media in your project.    
 

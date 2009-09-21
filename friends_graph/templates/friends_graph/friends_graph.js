@@ -17,6 +17,13 @@ function init() {
     //parent-children distance
     levelDistance: 100,
     //Add a controller to make the tree move on click.
+     Node: {  
+       color: '#ccddee'  
+     },  
+     Edge: {  
+       color: '#772277'  
+     },      
+    
      onCreateLabel: function(domElement, node) {  
        domElement.innerHTML = node.name;  
        domElement.onclick = function() {  
